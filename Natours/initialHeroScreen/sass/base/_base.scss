@@ -1,0 +1,24 @@
+/* Mini Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+// :root {
+//   --grn-light: #7ed56f;
+//   --grn-med: #55c57a;
+//   --grn-dark: #28b485;
+// }
+
+html {
+  /* DEFINES WHAT 1REM IS */
+  font-size: 62.5%; // SETS UP THE REM BASE >>> 10 / 16px */
+}
+
+body {
+  padding: 3rem;
+  box-sizing: border-box; /*Inherited Above*/
+}

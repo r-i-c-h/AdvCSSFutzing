@@ -1,0 +1,48 @@
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($clr-primary--light, 0.8),
+      rgba($clr-primary--dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
+
+  // Takes advantage of SCSS naming possibilities
+  // the "&" will just prepend whatever the parent bracket is named
+  &__logo-box {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+  &__logo {
+    height: 3rem; /* Only need height OR width- will scale automagically */
+  }
+  &__text-box {
+    position: absolute;
+    top: 40%; /* applies as relation to parent Elem */
+    left: 50%; /* applies as relation to parent Elem */
+    transform: translate(-50%, -50%); /* TRANSLATE relates to Element itself */
+    text-align: center;
+  }
+}
+// .header__logo-box {
+//   position: absolute;
+//   top: 2rem;
+//   left: 2rem;
+// }
+// .header__logo {
+//   height: 3rem; /* Only need height OR width- will scale automagically */
+// }
+
+/* CENTERED Text without a flexbox = left% - transformX% */
+// .header__text-box {
+//   position: absolute;
+//   top: 40%; /* applies as relation to parent Elem */
+//   left: 50%; /* applies as relation to parent Elem */
+//   transform: translate(-50%, -50%); /* TRANSLATE relates to Element itself */
+//   text-align: center;
+// }
