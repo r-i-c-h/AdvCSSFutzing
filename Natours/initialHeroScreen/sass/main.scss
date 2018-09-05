@@ -1,8 +1,9 @@
 $clr-primary--light: #7ed56f;
 $clr-primary--med: #55c57a;
 $clr-primary--dark: #28b485;
-$clr-grey--dark: #777;
+$clr-grey--dark: #777777;
 $clr-white: #eeeeee;
+$clr-black: #000000;
 
 /* Mini Reset */
 *,
@@ -20,7 +21,7 @@ $clr-white: #eeeeee;
 // }
 
 html {
-  font-size: 62%; /* SETS UP THE REM BASE */
+  font-size: 62%; /* SETS UP THE REM BASE >>> 10 / 16px = 62% */
 }
 
 body {
@@ -48,18 +49,18 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 2rem;
   left: 2rem;
 }
 
-.logo {
+.header__logo {
   height: 3rem; /* Only need height OR width- will scale automagically */
 }
 
 /* CENTERED Text without a flexbox = left% - transformX% */
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%; /* applies as relation to parent Elem */
   left: 50%; /* applies as relation to parent Elem */
@@ -75,7 +76,7 @@ body {
   backface-visibility: hidden; /* <<~~ There's a glitch in ANIMATING the titles and this is the fix??? (I can't see the glitch) */
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
@@ -102,7 +103,7 @@ body {
   }
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
@@ -132,7 +133,7 @@ body {
   font-size: 1.7rem;
 }
 
-.btn-fadeIn-animated {
+.btn--animated-fadeIn {
   animation: fadeInFromBottom 0.5s ease-out 0.75s; /* # after easing is DELAY */
   animation-fill-mode: backwards; /* Sets the start as the same as @keyframe-0 */
 }
@@ -165,11 +166,13 @@ body {
 }
 .btn:hover {
   transform: translateY(-0.3rem);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba($clr-black, 0.2);
 }
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  // box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.5rem 1rem rgba($clr-black, 0.5);
 }
 .btn::after {
   content: '';
@@ -189,10 +192,10 @@ body {
   opacity: 0;
 }
 
-.btn-white {
+.btn--white {
   background: $clr-white;
   color: $clr-grey--dark;
 }
-.btn-white::after {
+.btn--white::after {
   background: $clr-white;
 }
