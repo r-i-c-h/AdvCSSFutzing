@@ -1,0 +1,120 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 120%;
+}
+body {
+  box-sizing: border-box;
+}
+
+$width-button: 150px;
+
+$color-primary: #f9ed69; // SA[c]SS
+$color-2nd: #f08a5d; // SA[c]SS
+$color-3rd: #b83b5e; // SA[c]SS
+$color-text-dark: #333;
+$color-text-light: #eee;
+
+// (Ex Placeholder below )
+// For a placeholder means .className from the @extends-ing element is copied up into the slot where the
+// %Placeholder name is and replaces it. For a @mixin, The lines of code within the mixin
+// are copied INTO the `@include`-ing element
+/** # Example @mixin Mix-In aka Clearfix Ver.3 **/
+@mixin addClearfix {
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+/** Example Mixin WITH A VARIABLE **/
+@mixin styleAnchorText($theColor) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $theColor;
+}
+
+/** Example FUNCTION WITH VARS **/
+@function someFunc($a, $b) {
+  @return $a / $b;
+  // returns only a number w/out units!
+  // to actually use: multiply by 1px;
+}
+
+nav {
+  margin: someFunc(60, 2) * 1px; // FUNCTION
+  background-color: $color-primary;
+  // # Clearfix ver#2 - embed via SCSS
+  // Need a clearfix because [both] children elements are floated (L&R) => taken out of flow.
+  // Because it has no inline children, its margins collapse & the <nav> disappears!
+
+  // &::after {
+  //     content: ""; clear: both; display:table; }
+
+  // # Clearfix Ver #3 used via `@include` from `@mixin` defined above
+  @include addClearfix;
+}
+// # Clearfix ver#1
+// .clearfix::after {
+//   content: "";
+//   clear: both;
+//   display:table; }
+
+.navigation {
+  list-style: none;
+  float: left;
+
+  li {
+    display: inline-block;
+    margin-left: 3rem;
+
+    &:first-child {
+      margin: 0 0.5rem;
+    }
+
+    a:link {
+      @include styleAnchorText($color-text-dark);
+    }
+  }
+}
+
+.buttons {
+  float: right;
+}
+
+/* PLACEHOLDER Example */
+%btn-placeholder {
+  width: $width-button;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 100px;
+  text-align: center;
+  @include styleAnchorText($color-text-light);
+}
+
+.btn-main {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-2nd;
+  }
+
+  &:hover {
+    background-color: darken($color-2nd, 15%);
+  }
+}
+.btn-not {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-3rd;
+  }
+
+  &:hover {
+    background-color: lighten($color-3rd, 25%);
+  }
+}
