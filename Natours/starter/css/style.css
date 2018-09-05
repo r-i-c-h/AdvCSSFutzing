@@ -1,14 +1,10 @@
-/*
-COLORS:
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-*/
 /* Mini Reset */
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 :root {
@@ -17,13 +13,19 @@ Dark green: #28b485
   --grn-dark: #28b485;
 }
 
+html {
+  font-size: 62%;
+}
+
 body {
-  padding: 20px;
+  padding: 2rem;
   font-family: 'Lato', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.5;
   color: #777777;
+
+  box-sizing: border-box; /*Inherited Above*/
 }
 
 .header {
@@ -42,12 +44,12 @@ body {
 
 .logo-box {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 2rem;
+  left: 2rem;
 }
 
 .logo {
-  height: 30px; /* Only need height OR width- will scale automagically */
+  height: 3rem; /* Only need height OR width- will scale automagically */
 }
 
 /* CENTERED Text without a flexbox = left% - transformX% */
@@ -60,7 +62,7 @@ body {
 }
 
 .heading-primary {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   color: #eee;
   text-transform: uppercase;
 
@@ -69,9 +71,9 @@ body {
 
 .heading-primary-main {
   display: block;
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 34px;
+  letter-spacing: 3.4rem;
 
   animation-name: fadeInFromLeft; /* ANIMATION REQUIRES 2 ARGS - name as defined by @keyframes, and duration */
   animation-duration: 1s;
@@ -83,7 +85,7 @@ body {
 @keyframes fadeInFromLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
   80% {
     transform: translateX(10px);
@@ -96,20 +98,20 @@ body {
 
 .heading-primary-sub {
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 17.4px;
   /* animation-name: fadeInFromRight; */
   /* animation-duration: 1s; */
   /* animation-timing-function: ease-out; ..... see MDN for others */
-  /* CONDENSE VERSION: */
+  /*** CONDENSE VERSION: ***/
   animation: fadeInFromRight 1s ease-out;
 }
 /* ANIMATION FOR HERO TITLING */
 @keyframes fadeInFromRight {
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
   80% {
     transform: translateX(-10px);
@@ -131,7 +133,7 @@ body {
 @keyframes fadeInFromBottom {
   0% {
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(10rem);
   }
   90% {
     transform: translateY(-5px);
@@ -146,17 +148,17 @@ body {
 .btn:visited {
   display: inline-block;
   position: relative;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
 
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 100px;
+  border-radius: 10rem;
 
   transition: all 0.2s; /* CONDENSED VERSION + Transition ALL */
 }
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.3rem);
+  box-shadow: 0 10px 2rem; rgba(0, 0, 0, 0.2);
 }
 .btn:active {
   transform: translateY(-1px);
@@ -167,7 +169,7 @@ body {
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 10rem;
   position: absolute;
   top: 0;
   left: 0;
