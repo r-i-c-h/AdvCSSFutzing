@@ -47,26 +47,42 @@ body {
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
-}
 
-.header__logo-box {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  // Takes advantage of SCSS naming possibilities
+  // the '&' will just prepend whatever the parent bracket is named
+  &__logo-box {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+  &__logo {
+    height: 3rem; /* Only need height OR width- will scale automagically */
+  }
+  &__text-box {
+    position: absolute;
+    top: 40%; /* applies as relation to parent Elem */
+    left: 50%; /* applies as relation to parent Elem */
+    transform: translate(-50%, -50%); /* TRANSLATE relates to Element itself */
+    text-align: center;
+  }
 }
-
-.header__logo {
-  height: 3rem; /* Only need height OR width- will scale automagically */
-}
+// .header__logo-box {
+//   position: absolute;
+//   top: 2rem;
+//   left: 2rem;
+// }
+// .header__logo {
+//   height: 3rem; /* Only need height OR width- will scale automagically */
+// }
 
 /* CENTERED Text without a flexbox = left% - transformX% */
-.header__text-box {
-  position: absolute;
-  top: 40%; /* applies as relation to parent Elem */
-  left: 50%; /* applies as relation to parent Elem */
-  transform: translate(-50%, -50%); /* TRANSLATE relates to Element itself */
-  text-align: center;
-}
+// .header__text-box {
+//   position: absolute;
+//   top: 40%; /* applies as relation to parent Elem */
+//   left: 50%; /* applies as relation to parent Elem */
+//   transform: translate(-50%, -50%); /* TRANSLATE relates to Element itself */
+//   text-align: center;
+// }
 
 .heading-primary {
   margin-bottom: 1.5rem;
@@ -74,20 +90,91 @@ body {
   text-transform: uppercase;
 
   backface-visibility: hidden; /* <<~~ There's a glitch in ANIMATING the titles and this is the fix??? (I can't see the glitch) */
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.4rem;
+
+    animation-name: fadeInFromLeft; /* ANIMATION REQUIRES 2 ARGS - name as defined by @keyframes, and duration */
+    animation-duration: 1s;
+    animation-timing-function: ease-out; /* <<Optional..... see MDN for others */
+    /* animation-delay: 2s; */
+    /* animation-iteration-count: 3; */
+  }
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.7rem;
+    /* animation-name: fadeInFromRight; */
+    /* animation-duration: 1s; */
+    /* animation-timing-function: ease-out; ..... see MDN for others */
+    /*** CONDENSE VERSION: ***/
+    animation: fadeInFromRight 1s ease-out;
+  }
 }
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.4rem;
+.btn {
+  font-size: 1.7rem;
 
-  animation-name: fadeInFromLeft; /* ANIMATION REQUIRES 2 ARGS - name as defined by @keyframes, and duration */
-  animation-duration: 1s;
-  animation-timing-function: ease-out; /* <<Optional..... see MDN for others */
-  /* animation-delay: 2s; */
-  /* animation-iteration-count: 3; */
+  &--animated-fadeIn {
+    animation: fadeInFromBottom 0.5s ease-out 0.75s; /* # after easing is DELAY */
+    animation-fill-mode: backwards; /* Sets the start as the same as @keyframe-0 */
+  }
+
+  &:link,
+  &:visited {
+    display: inline-block;
+    position: relative;
+    padding: 1.5rem 4rem;
+
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 10rem;
+
+    transition: all 0.2s; /* CONDENSED VERSION ++ Transition ALL */
+  }
+  &:hover {
+    transform: translateY(-0.3rem);
+    // box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba($clr-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &:active {
+    transform: translateY(-1px);
+    // box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.5rem 1rem rgba($clr-black, 0.5);
+  }
+  &::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    transition: all 0.4s;
+  }
+
+  &--white {
+    background: $clr-white;
+    color: $clr-grey--dark;
+
+    &::after {
+      background: $clr-white;
+    }
+  }
 }
+
 /* ANIMATION FOR HERO TITLING */
 @keyframes fadeInFromLeft {
   0% {
@@ -103,18 +190,7 @@ body {
   }
 }
 
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.7rem;
-  /* animation-name: fadeInFromRight; */
-  /* animation-duration: 1s; */
-  /* animation-timing-function: ease-out; ..... see MDN for others */
-  /*** CONDENSE VERSION: ***/
-  animation: fadeInFromRight 1s ease-out;
-}
-/* ANIMATION FOR HERO TITLING */
+/* ANIMATION FOR HERO Sub-Titling */
 @keyframes fadeInFromRight {
   0% {
     opacity: 0;
@@ -128,16 +204,7 @@ body {
     transform: translateX(0);
   }
 }
-
-.btn {
-  font-size: 1.7rem;
-}
-
-.btn--animated-fadeIn {
-  animation: fadeInFromBottom 0.5s ease-out 0.75s; /* # after easing is DELAY */
-  animation-fill-mode: backwards; /* Sets the start as the same as @keyframe-0 */
-}
-
+/* Animation for HERO Button */
 @keyframes fadeInFromBottom {
   0% {
     opacity: 0;
@@ -150,52 +217,4 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.btn:link,
-.btn:visited {
-  display: inline-block;
-  position: relative;
-  padding: 1.5rem 4rem;
-
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 10rem;
-
-  transition: all 0.2s; /* CONDENSED VERSION + Transition ALL */
-}
-.btn:hover {
-  transform: translateY(-0.3rem);
-  // box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1rem 2rem rgba($clr-black, 0.2);
-}
-.btn:active {
-  transform: translateY(-1px);
-  // box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0.5rem 1rem rgba($clr-black, 0.5);
-}
-.btn::after {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  transition: all 0.4s;
-}
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--white {
-  background: $clr-white;
-  color: $clr-grey--dark;
-}
-.btn--white::after {
-  background: $clr-white;
 }
