@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass2css": "node-sass sass/main.scss css/style.css -w"
+    "sass2css": "node-sass sass/main.scss css/style.css -w",
+    "itAll": "concurrently \"node-sass sass/main.scss css/style.css -w\" \"live-server\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "node-sass": "^4.9.3"
+  },
+  "dependencies": {
+    "concurrently": "^4.0.1"
   }
 }
