@@ -1,0 +1,38 @@
+body {
+  color: $clr-grey--dark;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.heading-primary {
+  margin-bottom: 1.5rem;
+  color: $clr-white;
+  text-transform: uppercase;
+
+  backface-visibility: hidden; /* <<~~ There"s a glitch in ANIMATING the titles and this is the fix??? (I can"t see the glitch) */
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.4rem;
+
+    animation-name: fadeInFromLeft; /* ANIMATION REQUIRES 2 ARGS - name as defined by @keyframes, and duration */
+    animation-duration: 1s;
+    animation-timing-function: ease-out; /* <<Optional..... see MDN for others */
+    /* animation-delay: 2s; */
+    /* animation-iteration-count: 3; */
+  }
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.7rem;
+    /* animation-name: fadeInFromRight; */
+    /* animation-duration: 1s; */
+    /* animation-timing-function: ease-out; ..... see MDN for others */
+    /*** CONDENSE VERSION: ***/
+    animation: fadeInFromRight 1s ease-out;
+  }
+}
